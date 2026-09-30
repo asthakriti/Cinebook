@@ -1,6 +1,9 @@
 package com.cinebook.backend.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "movies")
@@ -11,9 +14,15 @@ public class Movie {
     private Integer id;
 
     private Integer tmdbId;
+
+    @NotBlank(message = "Title is required")
+    @Size(max = 200, message = "Title must be at most 200 characters")
     private String title;
+
     private String genre;
     private String language;
+
+    @Positive(message = "Duration must be a positive number")
     private Integer duration;
     private String posterUrl;
 

@@ -2,6 +2,7 @@ package com.cinebook.backend.controller;
 
 import com.cinebook.backend.entity.Movie;
 import com.cinebook.backend.service.MovieService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import java.util.List;
@@ -27,12 +28,12 @@ public class MovieController {
 
     @PostMapping("/movies")
     @ResponseStatus(HttpStatus.CREATED)
-    public Movie addMovie(@RequestBody Movie movie) {
+    public Movie addMovie(@Valid @RequestBody Movie movie) {
         return movieService.addMovie(movie);
     }
 
     @PutMapping("/movies/{id}")
-    public Movie updateMovie(@PathVariable Integer id, @RequestBody Movie movie) {
+    public Movie updateMovie(@PathVariable Integer id, @Valid @RequestBody Movie movie) {
         return movieService.updateMovie(id, movie);
     }
 
