@@ -16,8 +16,15 @@ public class TheatreService {
         this.theatreRepository = theatreRepository;
     }
 
-    public List<Theatre> getAllTheatres() {
-        return theatreRepository.findAll();
+    public List<Theatre> getTheatres(String city) {
+
+        // NEW: city is null when the URL has no ?city=...
+        // isBlank() also catches ?city= (empty) and ?city=   (spaces)
+        if (city == null || city.isBlank()) {
+            return theatreRepository.findAll();      // no filter → all theatres
+        }
+
+        return theatreRepository.findByCity(city);   // NEW: filter by city
     }
 
     public Theatre getTheatreById(Integer id) {
