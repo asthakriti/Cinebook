@@ -17,7 +17,6 @@ public class ShowController {
         this.showService = showService;
     }
 
-    // SAME nested URL style as /theatres/{theatreId}/screens
     @GetMapping("/movies/{movieId}/shows")
     public List<Show> getShowsByMovie(@PathVariable Integer movieId) {
         return showService.getShowsByMovie(movieId);

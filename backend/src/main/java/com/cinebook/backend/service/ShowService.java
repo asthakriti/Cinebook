@@ -1,5 +1,5 @@
 package com.cinebook.backend.service;
-
+import java.time.LocalDateTime;
 import com.cinebook.backend.entity.Show;
 import com.cinebook.backend.repository.ShowRepository;
 import org.springframework.stereotype.Service;
@@ -21,6 +21,6 @@ public class ShowService {
         // Reuse: throws MovieNotFoundException (404) if the movie doesn't exist
         movieService.getMovieById(movieId);
 
-        return showRepository.findByMovieIdOrderByStartTimeAsc(movieId);
-    }
+        return showRepository.findByMovieIdAndStartTimeAfterOrderByStartTimeAsc(
+                movieId, LocalDateTime.now());    }
 }
